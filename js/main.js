@@ -1,57 +1,70 @@
+data = [{
+        amountOfDays: "12",
+        covidState: "true",
+        patientState: "normal",
+        hash: "1ed32df45gw2"
+    },
+    {
+        amountOfDays: "0",
+        covidState: "false",
+        patientState: "normal",
+        hash: "1ed32df45gw3"
+    },
+    {
+        amountOfDays: "30",
+        covidState: "true",
+        patientState: "died",
+        hash: "1ed32df45gw4"
+    },
+    {
+        amountOfDays: "2",
+        covidState: "true",
+        patientState: "normal",
+        hash: "1ed32df45gw5"
+    }
+]
+let mas = [
+    ["row 1, cell 1", "row 1, cell 2"],
+    ["row 2, cell 1", "row 2, cell 2"]
+];
 
-(function ($) {
-    "use strict";
-
-    
-    /*==================================================================
-    [ Validate ]*/
-    var input = $('.validate-input .input100');
-
-    $('.validate-form').on('submit',function(){
-        var check = true;
-
-        for(var i=0; i<input.length; i++) {
-            if(validate(input[i]) == false){
-                showValidate(input[i]);
-                check=false;
-            }
-        }
-
-        return check;
-    });
 
 
-    $('.validate-form .input100').each(function(){
-        $(this).focus(function(){
-           hideValidate(this);
+function createTable(tableData) {
+    // const contentElement = document.querySelector("#root");
+    var table = document.createElement('table');
+    var tableBody = document.createElement('tbody');
+
+    tableData.forEach(function (rowData) {
+        var row = document.createElement('tr');
+
+        rowData.forEach(function (cellData) {
+            var cell = document.createElement('td');
+            cell.appendChild(document.createTextNode(cellData));
+            row.appendChild(cell);
         });
+
+        tableBody.appendChild(row);
     });
 
-    function validate (input) {
-        if($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
-            if($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
-                return false;
-            }
-        }
-        else {
-            if($(input).val().trim() == ''){
-                return false;
-            }
-        }
-    }
+    table.appendChild(tableBody);
+    document.body.appendChild(table);
+}
 
-    function showValidate(input) {
-        var thisAlert = $(input).parent();
 
-        $(thisAlert).addClass('alert-validate');
-    }
+// function makeTableHTML(myArray) {
+//     var result = "<table border=1>";
+//     for (var i = 0; i < myArray.length; i++) {
+//         result += "<tr>";
+//         for (var j = 0; j < myArray[i].length; j++) {
+//             result += "<td>" + myArray[i][j] + "</td>";
+//         }
+//         result += "</tr>";
+//     }
+//     result += "</table>";
 
-    function hideValidate(input) {
-        var thisAlert = $(input).parent();
+//     return result;
+// }
 
-        $(thisAlert).removeClass('alert-validate');
-    }
-    
-    
-
-})(jQuery);
+const contentElement = document.querySelector("#root");
+contentElement.innerHTML = createTable(mas);;
