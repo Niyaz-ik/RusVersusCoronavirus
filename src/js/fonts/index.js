@@ -28,7 +28,8 @@ async function getData() {
 
 let mass = [
     ["1123123123123", "3", "Amil"],
-    ["2", "433333333", "Iluxa"]
+    ["2", "433333333", "Iluxa"],
+    ["7", "256", "Niyazik"]
 ];
 
 
